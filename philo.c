@@ -86,7 +86,7 @@ void	*thread_executer(void *arg)
 	while (1)
 	{
 		ft_eat(philo);
-		// pthread_mutex_lock(&philo->data->mutex);
+		pthread_mutex_lock(&philo->data->mutex);
 		philo->is_eat++;
 		if (philo->data->number_of_times_each_philosopher_must_eat != -1)
 		{
@@ -97,30 +97,33 @@ void	*thread_executer(void *arg)
 				break ;
 			}
 		}
-		// pthread_mutex_unlock(&philo->data->mutex);
+		pthread_mutex_unlock(&philo->data->mutex);
 		ft_sleep(philo);
 		ft_thinking(philo);
+		usleep(100);
 	}
 	return (NULL);
 }
 
-
 void	*check_death(t_philo *philo)
 {
+	long long i = 0;
 	while (1)
 	{
-		// pthread_mutex_lock(&philo->data->forks[philo->num - 1]);
+		pthread_mutex_lock(&philo->data->mutex);
 		if (get_time() - philo->data->last_time_eating[philo->num - 1] \
 		> philo->data->time_to_die)
 		{
 			if (philo->data->die == 0)
 			{
-				pthread_mutex_lock(&philo->data->mutex);
+				// pthread_mutex_lock(&philo->data->mutex);
 				printf("%lld %d %s\n", get_time() - philo->data->currnt_time, philo->num, "died");
 			}
+			pthread_mutex_unlock(&philo->data->mutex);
 			break ;
 		}
-		// pthread_mutex_unlock(&philo->data->forks[philo->num - 1]);
+		i++;
+		pthread_mutex_unlock(&philo->data->mutex);
 		usleep(1000);
 	}
 	return (NULL);
