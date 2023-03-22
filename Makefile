@@ -4,7 +4,13 @@ CC = cc
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address 
 
 INC = philosophers.h
-SRC = philo.c
+SRC = philo.c\
+	parsing.c\
+	utils.c\
+	thread_executer.c\
+	eat_think_sleep.c\
+	check_death.c\
+
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -17,7 +23,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 f: all clean
-	clear
+	# clear
 	@echo "\033[0;92mPhilo is ready.\033[0m"
 
 clean:
