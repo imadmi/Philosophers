@@ -30,7 +30,7 @@ typedef struct philo
 	struct s_data	*data;
 	int				is_eat;
 	int				is_die;
-	int				num;
+	int				philo_nbr;
 	pthread_t		thread_id;
 	pthread_t 		check_death_thread;
 }t_philo;
@@ -39,18 +39,19 @@ typedef struct s_data
 {
 	t_philo			*philos;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	change;
 	pthread_mutex_t	*forks;
 	int				nbr_of_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				number_of_times_each_philosopher_must_eat;
-	long long		currnt_time;
-	long long		*last_time_eating;
+	size_t		currnt_time;
+	size_t		*last_time_eating;
 	int				die;
 }t_data;
 
-long long	get_time(void);
+size_t	get_time(void);
 void		ft_usleep(int time);
 int			ft_atoi(char *str);
 int			check_args(int ac, char **av);
