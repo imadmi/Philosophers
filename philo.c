@@ -131,7 +131,7 @@ void	check_death(t_info *philo)
 		}
 		i++;
 		pthread_mutex_unlock(&philo->data->change);
-		// usleep(1000);
+		usleep(1000);
 	}
 }
 
