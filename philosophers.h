@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:23:20 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 10:50:36 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:46:43 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void			print_state(t_info *philo, char *str);
 void			ft_sleep(t_info *philo);
 void			ft_thinking(t_info *philo);
 void			ft_eat(t_info *philo);
-void			ft_thread(t_data *data);
+int				ft_thread(t_data *data);
 void			*thread_executer(void *philo_data);
 void			check_death(t_info *philo);
 int				check_args(int ac, char **av);

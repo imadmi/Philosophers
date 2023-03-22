@@ -6,13 +6,13 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 07:56:02 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 11:35:04 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:55:34 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_thread(t_data *data)
+int	ft_thread(t_data *data)
 {
 	int	i;
 
@@ -20,10 +20,12 @@ void	ft_thread(t_data *data)
 	while (i < data->nbr_of_philo)
 	{
 		data->last_time_eating[data->philos->philo_nbr - 1] = get_time();
-		pthread_create(&data->philos[i].thread_id, NULL, \
-				&thread_executer, &data->philos[i]);
+		if ((pthread_create(&data->philos[i].thread_id, NULL, \
+			&thread_executer, &data->philos[i])))
+			return (print_error("create pthread error"));
 		i++;
 	}
+	return (0);
 }
 
 void	thread_executer_suite(t_info	*philo)
