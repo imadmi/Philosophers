@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 07:48:10 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 07:54:36 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:50:31 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_args(int ac, char **av)
 	{
 		while (av[++i])
 		{
-			if (ft_atoi(av[i]) < 0 && !ft_digit(ft_atoi(av[i])))
+			if (ft_atoi(av[i]) <= 0 && !ft_digit(ft_atoi(av[i])))
 				return (print_error("Input error"));
 		}
 	}

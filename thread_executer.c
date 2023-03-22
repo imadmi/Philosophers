@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 07:56:02 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 08:02:32 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:40:09 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	thread_executer_suite(t_info	*philo)
 {
 	ft_sleep(philo);
 	ft_thinking(philo);
-	usleep(200);
+	usleep(100);
 }
 
 void	*thread_executer(void *philo_data)
@@ -39,7 +39,7 @@ void	*thread_executer(void *philo_data)
 
 	philo = (t_info *)philo_data;
 	if (philo->philo_nbr % 2 == 1)
-		usleep(1000);
+		usleep(500);
 	while (1)
 	{
 		ft_eat(philo);

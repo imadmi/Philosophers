@@ -1,5 +1,6 @@
 NAME = philo
 CC = cc
+CFLAGS = -Wall -Wextra -Werror
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address 
 
@@ -23,7 +24,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 f: all clean
-	# clear
+	clear
 	@echo "\033[0;92mPhilo is ready.\033[0m"
 
 clean:

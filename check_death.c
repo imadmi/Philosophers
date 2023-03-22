@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:03:01 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 08:22:46 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:41:09 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_death_suite(int death, t_info *philo, size_t curr_time, int counter)
 			% philo->data->nbr_of_philo].data->print);
 		printf("%zu\t%d ", get_time() - curr_time, \
 			philo[counter % philo->data->nbr_of_philo].philo_nbr);
-		print_error("died");
+		print_error("died ☠️");
 		return (1);
 	}
 	return (0);
