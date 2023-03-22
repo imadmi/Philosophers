@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 07:47:28 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 10:50:19 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:52:45 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(int ac, char *av[])
 	if (check_args(ac, av))
 		return (0);
 	get_args(ac, av, data);
-	init_data(data);
+	if (init_data(data))
+		return (0);
 	init_mutex(data);
 	ft_thread(data);
 	check_death(data->philos);

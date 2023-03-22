@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 07:56:02 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 10:40:09 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:35:04 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,15 @@ void	init_mutex(t_data *data)
 		if (pthread_mutex_init(&data->forks[i], NULL))
 			print_error("mutex error");
 		data->philos[i].data = data;
-		data->philos[i].ate = 1;
+		data->philos[i].ate = 0;
 		data->philos[i].philo_nbr = i + 1;
 		i++;
 	}
 	data->currnt_time = get_time();
-	pthread_mutex_init(&data->print, NULL);
-	pthread_mutex_init(&data->change, NULL);
+	if (pthread_mutex_init(&data->print, NULL))
+		print_error("mutex error");
+	if (pthread_mutex_init(&data->change, NULL))
+		print_error("mutex error");
 }
 
 void	ft_join(t_data *data)
