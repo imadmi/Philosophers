@@ -108,27 +108,30 @@ void	*thread_executer(void *arg)
 
 void	check_death(t_info *philo)
 {
+	size_t  i;
+	
+	i = 0;
 	while (1)
 	{
 		pthread_mutex_lock(&philo->data->change);
-		if (get_time() - philo->data->last_time_eating[philo->philo_nbr - 1] \
-			> (size_t)philo->data->time_to_die)
+		if (get_time() - philo[i % philo->data->nbr_of_philo].data->last_time_eating[philo->philo_nbr - 1] \
+			> (size_t)philo[i % philo->data->nbr_of_philo].data->time_to_die)
 		{
-			if (philo->data->die == DEAD)
+			if (philo[i % philo->data->nbr_of_philo].data->die == DEAD)
 			{
-				pthread_mutex_lock(&philo->data->print);
-				printf("%lu\t%d ", get_time() - philo->data->currnt_time, \
-					philo->philo_nbr);
-				print_error("died ☠️");
+				pthread_mutex_lock(&philo[i % philo->data->nbr_of_philo].data->print);
+				printf("%zu\t%d ", get_time() - philo[i % philo->data->nbr_of_philo].data->currnt_time, \
+					philo[i % philo->data->nbr_of_philo].philo_nbr);
+				print_error("died");
 				return ;
 			}
 			pthread_mutex_unlock(&philo->data->change);
 			return ;
 		}
+		i++;
 		pthread_mutex_unlock(&philo->data->change);
 		usleep(1000);
 	}
-	return ;
 }
 
 void	ft_philo(t_data *data)
@@ -142,13 +145,7 @@ void	ft_philo(t_data *data)
 		pthread_create(&data->philos[i].thread_id, NULL, &thread_executer, &data->philos[i]);
 		i++;
 	}
-	check_death(data->philos);
-	i = 0;
-	while (i < data->nbr_of_philo && data->die != DEAD)
-	{
-		pthread_join(data->philos[i].thread_id, NULL);
-		i++;
-	}
+
 	return ;
 }
 
@@ -213,7 +210,7 @@ int	init_data(t_data *data)
 	return 0;
 }
 
-void	ft_free(t_data *data)
+void	ft_join(t_data *data)
 {
 	int	i;
 
@@ -231,6 +228,18 @@ void	ft_free(t_data *data)
 	free(data);
 }
 
+void	ft_free(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nbr_of_philo && data->die != DEAD)
+	{
+		pthread_join(data->philos[i].thread_id, NULL);
+		i++;
+	}
+}
+
 int	main(int ac, char *av[])
 {
 	t_data	*data;
@@ -245,6 +254,8 @@ int	main(int ac, char *av[])
 	init_data(data);
 	init_mutex(data);
 	ft_philo(data);
+	check_death(data->philos);
+	ft_join(data);
 	ft_free(data);
 	return (0);
 }
