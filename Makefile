@@ -1,8 +1,6 @@
 NAME = philo
 CC = cc
-# CFLAGS = -fsanitize=thread
-# CFLAGS = -fsanitize=address
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
+# CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address 
 
 INC = philosophers.h
