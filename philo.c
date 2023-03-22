@@ -37,7 +37,8 @@ int	print_error(char *str)
 void	print_state(t_info *philo, char *str)
 {
 	pthread_mutex_lock(&philo->data->print);
-	printf("%lu\t%d %s\n", get_time() - philo->data->currnt_time, philo->philo_nbr, str);
+	printf("%lu\t%d %s\n", get_time() - philo->data->currnt_time,\
+		philo->philo_nbr, str);
 	pthread_mutex_unlock(&philo->data->print);
 }
 
@@ -130,11 +131,11 @@ void	check_death(t_info *philo)
 		}
 		i++;
 		pthread_mutex_unlock(&philo->data->change);
-		usleep(1000);
+		// usleep(1000);
 	}
 }
 
-void	ft_philo(t_data *data)
+void	ft_thread(t_data *data)
 {
 	int	i;
 
@@ -210,7 +211,7 @@ int	init_data(t_data *data)
 	return 0;
 }
 
-void	ft_join(t_data *data)
+void	ft_free(t_data *data)
 {
 	int	i;
 
@@ -228,7 +229,7 @@ void	ft_join(t_data *data)
 	free(data);
 }
 
-void	ft_free(t_data *data)
+void	ft_join(t_data *data)
 {
 	int	i;
 
@@ -253,7 +254,7 @@ int	main(int ac, char *av[])
 		return 0;
 	init_data(data);
 	init_mutex(data);
-	ft_philo(data);
+	ft_thread(data);
 	check_death(data->philos);
 	ft_join(data);
 	ft_free(data);
