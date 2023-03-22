@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 07:56:02 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 11:55:34 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 12:03:07 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*thread_executer(void *philo_data)
 	return (NULL);
 }
 
-void	init_mutex(t_data *data)
+int	init_mutex(t_data *data)
 {
 	int	i;
 
@@ -72,7 +72,7 @@ void	init_mutex(t_data *data)
 	while (i < data->nbr_of_philo)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL))
-			print_error("mutex error");
+			return (print_error("mutex error"));
 		data->philos[i].data = data;
 		data->philos[i].ate = 0;
 		data->philos[i].philo_nbr = i + 1;
@@ -82,17 +82,20 @@ void	init_mutex(t_data *data)
 	if (pthread_mutex_init(&data->print, NULL))
 		print_error("mutex error");
 	if (pthread_mutex_init(&data->change, NULL))
-		print_error("mutex error");
+		return (print_error("mutex error"));
+	return (0);
 }
 
-void	ft_join(t_data *data)
+int	ft_join(t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->nbr_of_philo && data->die != DEAD)
 	{
-		pthread_join(data->philos[i].thread_id, NULL);
+		if (pthread_join(data->philos[i].thread_id, NULL))
+			return (print_error("mutex error"));
 		i++;
 	}
+	return (0);
 }

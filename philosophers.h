@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:23:20 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/22 11:46:43 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/22 12:02:27 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void			check_death(t_info *philo);
 int				check_args(int ac, char **av);
 void			get_args(int ac, char **av, t_data *data);
 int				init_data(t_data *data);
-void			init_mutex(t_data *data);
-void			ft_join(t_data *data);
+int				init_mutex(t_data *data);
+int				ft_join(t_data *data);
 void			ft_free(t_data *data);
 
 #endif
