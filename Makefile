@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/25 04:01:29 by imimouni          #+#    #+#              #
+#    Updated: 2023/03/25 04:01:30 by imimouni         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = philo
 CC = cc
 # CFLAGS = -Wall -Wextra -Werror
@@ -17,11 +29,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "\033[0;92mPhilo is ready.\033[0m"
-
-f: all clean
-	clear
+	$(CC) -Wall -Wextra -Werror $(OBJ) -o $(NAME)
 	@echo "\033[0;92mPhilo is ready.\033[0m"
 
 clean:
@@ -33,7 +41,7 @@ fclean: clean
 	@echo "\033[0;93mThe object files and the executable are removed.\033[0m"
 
 %.o: %.c $(INC)
-	$(CC) -Wall -Wextra -Werror -c $< -o $@
+	@$(CC) -Wall -Wextra -Werror -c $< -o $@
 
 re: fclean all
 
