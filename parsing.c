@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 07:48:10 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/24 22:18:21 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/26 04:29:03 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,18 @@ void	ft_free(t_data *data)
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
+	if (data->forks)
+		free(data->forks);
+	if (data->philos)
+		free(data->philos);
+	if (data->last_time_eating)
+		free(data->last_time_eating);
+	if (data)
+		free(data);
+}
+
+void	ft_freee(t_data *data)
+{
 	if (data->forks)
 		free(data->forks);
 	if (data->philos)

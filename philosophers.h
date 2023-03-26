@@ -6,7 +6,7 @@
 /*   By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:23:20 by imimouni          #+#    #+#             */
-/*   Updated: 2023/03/24 22:18:12 by imimouni         ###   ########.fr       */
+/*   Updated: 2023/03/26 04:29:20 by imimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/time.h>
 
 # define ERR_USAGE "\033[0;31mUsage: ./philo <nbr of philosophers> <time to die> <time to eat>\
- <time to sleep> [times each philosopher must eat]\n"
+ <time to sleep> [times each philosopher must eat]"
 
 # define DEAD 0
 # define ALIVE 1
@@ -72,5 +72,6 @@ int				init_data(t_data *data);
 int				init_mutex(t_data *data);
 int				ft_join(t_data *data);
 void			ft_free(t_data *data);
+void			ft_freee(t_data *data);
 
 #endif

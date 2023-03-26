@@ -6,15 +6,13 @@
 #    By: imimouni <imimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/25 04:01:29 by imimouni          #+#    #+#              #
-#    Updated: 2023/03/25 04:01:30 by imimouni         ###   ########.fr        #
+#    Updated: 2023/03/26 04:32:59 by imimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-# CFLAGS = -Wall -Wextra -Werror
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
-# CFLAGS = -Wall -Wextra -Werror -fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror
 
 INC = philosophers.h
 SRC = philo.c\
@@ -29,15 +27,15 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -Wall -Wextra -Werror $(OBJ) -o $(NAME)
+	@$(CC) -Wall -Wextra -Werror $(OBJ) -o $(NAME)
 	@echo "\033[0;92mPhilo is ready.\033[0m"
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 	@echo "\033[0;93mObject files removed.\033[0m"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 	@echo "\033[0;93mThe object files and the executable are removed.\033[0m"
 
 %.o: %.c $(INC)
@@ -45,4 +43,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re f
+.PHONY: all clean fclean re
